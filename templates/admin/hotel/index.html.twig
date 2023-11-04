@@ -47,6 +47,7 @@
 							<tr>
 								<th>Id</th>
 								<th>Title</th>
+								<th>Category</th>
 								<th>Keywords</th>
 								<th>Description</th>
 								<th>Image</th>
@@ -69,9 +70,11 @@
 								<tr>
 									<td>{{ hotel.id }}</td>
 									<td>{{ hotel.title }}</td>
+									<td>{{ hotel.category }}</td>
 									<td>{{ hotel.keywords }}</td>
 									<td>{{ hotel.description }}</td>
-									<td>{{ hotel.image }}</td>
+									<td><img src="{{asset('uploads/images/' ~ hotel.image) }}" style="width:40px">	
+									</td>
 									<td>{{ hotel.star }}</td>
 									<td>{{ hotel.address }}</td>
 									<td>{{ hotel.phone }}</td>

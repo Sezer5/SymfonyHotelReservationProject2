@@ -4,9 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\Hotel;
 use App\Form\HotelType;
+use App\Repository\CategoryRepository;
 use App\Repository\HotelRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,13 +25,27 @@ class HotelController extends AbstractController
     }
 
     #[Route('/new', name: 'app_hotel_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,CategoryRepository $categoryRepository): Response
     {
         $hotel = new Hotel();
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file=$form['image']->getData();
+            if($file){
+                $fileName=$this->generateUniqueFileName().'.'.$file->guessExtension();
+                try{
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $fileName
+                    );
+                }catch(FileException $e){
+
+                }
+                $hotel->setImage($fileName);
+            }
+            
             $entityManager->persist($hotel);
             $entityManager->flush();
 
@@ -39,6 +55,7 @@ class HotelController extends AbstractController
         return $this->render('admin/hotel/new.html.twig', [
             'hotel' => $hotel,
             'form' => $form,
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 
@@ -51,12 +68,27 @@ class HotelController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_hotel_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Hotel $hotel, EntityManagerInterface $entityManager,CategoryRepository $categoryRepository): Response
     {
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
-
+        /** @var file $file */
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form['image']->getData();
+            if($file){
+                $fileName=$this->generateUniqueFileName() . '.' . $file->guessExtension();
+                try{
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $fileName
+                    );
+                }catch(FileException $e){
+
+                }
+                $hotel->setImage($fileName);
+            }
+
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_hotel_index', [], Response::HTTP_SEE_OTHER);
@@ -65,6 +97,7 @@ class HotelController extends AbstractController
         return $this->render('admin/hotel/edit.html.twig', [
             'hotel' => $hotel,
             'form' => $form,
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 
@@ -77,5 +110,11 @@ class HotelController extends AbstractController
         }
 
         return $this->redirectToRoute('app_hotel_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+        @return string
+     */
+    private function generateUniqueFileName(){
+        return md5(uniqid());
     }
 }

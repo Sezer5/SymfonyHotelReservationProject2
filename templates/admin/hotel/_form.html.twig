@@ -1,4 +1,364 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<form name="hotel" method="post">
+	<div id="hotel">
+		<div>
+			<label for="hotel_title">Title</label>
+			<input type="text" id="hotel_title" name="hotel[title]" maxlength="150" class="form-control" value="{{hotel.title}}"/></div>
+		<div>
+			<label for="hotel_keywords">Keywords</label><input type="text" id="hotel_keywords" name="hotel[keywords]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_description" class="required">Description</label><input type="text" id="hotel_description" name="hotel[description]" required="required" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_image">Image</label><input type="file" id="hotel_image" name="image" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_star">Star</label><input type="number" id="hotel_star" name="hotel[star]" class="form-control"/></div>
+		<div>
+			<label for="hotel_address">Address</label><input type="text" id="hotel_address" name="hotel[address]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_phone">Phone</label><input type="text" id="hotel_phone" name="hotel[phone]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_fax">Fax</label><input type="text" id="hotel_fax" name="hotel[fax]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_email">Email</label><input type="text" id="hotel_email" name="hotel[email]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_city">City</label><input type="text" id="hotel_city" name="hotel[city]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_country">Country</label><input type="text" id="hotel_country" name="hotel[country]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_location">Location</label><input type="text" id="hotel_location" name="hotel[location]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label for="hotel_status">Status</label><input type="text" id="hotel_status" name="hotel[status]" maxlength="255" class="form-control"/></div>
+		<div>
+			<label>Created at</label>
+			<div id="hotel_created_at">
+				<div id="hotel_created_at_date">
+					<select id="hotel_created_at_date_month" name="hotel[created_at][date][month]">
+						<option value=""></option>
+						<option value="1">Jan</option>
+						<option value="2">Feb</option>
+						<option value="3">Mar</option>
+						<option value="4">Apr</option>
+						<option value="5">May</option>
+						<option value="6">Jun</option>
+						<option value="7">Jul</option>
+						<option value="8">Aug</option>
+						<option value="9">Sep</option>
+						<option value="10">Oct</option>
+						<option value="11">Nov</option>
+						<option value="12">Dec</option>
+					</select>
+					<select id="hotel_created_at_date_day" name="hotel[created_at][date][day]">
+						<option value=""></option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+					<select id="hotel_created_at_date_year" name="hotel[created_at][date][year]">
+						<option value=""></option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+						<option value="2026">2026</option>
+						<option value="2027">2027</option>
+						<option value="2028">2028</option>
+					</select>
+				</div>
+				<div id="hotel_created_at_time">
+					<select id="hotel_created_at_time_hour" name="hotel[created_at][time][hour]">
+						<option value=""></option>
+						<option value="0">00</option>
+						<option value="1">01</option>
+						<option value="2">02</option>
+						<option value="3">03</option>
+						<option value="4">04</option>
+						<option value="5">05</option>
+						<option value="6">06</option>
+						<option value="7">07</option>
+						<option value="8">08</option>
+						<option value="9">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+					</select>:<select id="hotel_created_at_time_minute" name="hotel[created_at][time][minute]">
+						<option value=""></option>
+						<option value="0">00</option>
+						<option value="1">01</option>
+						<option value="2">02</option>
+						<option value="3">03</option>
+						<option value="4">04</option>
+						<option value="5">05</option>
+						<option value="6">06</option>
+						<option value="7">07</option>
+						<option value="8">08</option>
+						<option value="9">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+						<option value="32">32</option>
+						<option value="33">33</option>
+						<option value="34">34</option>
+						<option value="35">35</option>
+						<option value="36">36</option>
+						<option value="37">37</option>
+						<option value="38">38</option>
+						<option value="39">39</option>
+						<option value="40">40</option>
+						<option value="41">41</option>
+						<option value="42">42</option>
+						<option value="43">43</option>
+						<option value="44">44</option>
+						<option value="45">45</option>
+						<option value="46">46</option>
+						<option value="47">47</option>
+						<option value="48">48</option>
+						<option value="49">49</option>
+						<option value="50">50</option>
+						<option value="51">51</option>
+						<option value="52">52</option>
+						<option value="53">53</option>
+						<option value="54">54</option>
+						<option value="55">55</option>
+						<option value="56">56</option>
+						<option value="57">57</option>
+						<option value="58">58</option>
+						<option value="59">59</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div>
+			<label>Updated at</label>
+			<div id="hotel_updated_at">
+				<div id="hotel_updated_at_date">
+					<select id="hotel_updated_at_date_month" name="hotel[updated_at][date][month]">
+						<option value=""></option>
+						<option value="1">Jan</option>
+						<option value="2">Feb</option>
+						<option value="3">Mar</option>
+						<option value="4">Apr</option>
+						<option value="5">May</option>
+						<option value="6">Jun</option>
+						<option value="7">Jul</option>
+						<option value="8">Aug</option>
+						<option value="9">Sep</option>
+						<option value="10">Oct</option>
+						<option value="11">Nov</option>
+						<option value="12">Dec</option>
+					</select>
+					<select id="hotel_updated_at_date_day" name="hotel[updated_at][date][day]">
+						<option value=""></option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+					<select id="hotel_updated_at_date_year" name="hotel[updated_at][date][year]">
+						<option value=""></option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+						<option value="2026">2026</option>
+						<option value="2027">2027</option>
+						<option value="2028">2028</option>
+					</select>
+				</div>
+				<div id="hotel_updated_at_time">
+					<select id="hotel_updated_at_time_hour" name="hotel[updated_at][time][hour]">
+						<option value=""></option>
+						<option value="0">00</option>
+						<option value="1">01</option>
+						<option value="2">02</option>
+						<option value="3">03</option>
+						<option value="4">04</option>
+						<option value="5">05</option>
+						<option value="6">06</option>
+						<option value="7">07</option>
+						<option value="8">08</option>
+						<option value="9">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+					</select>:<select id="hotel_updated_at_time_minute" name="hotel[updated_at][time][minute]">
+						<option value=""></option>
+						<option value="0">00</option>
+						<option value="1">01</option>
+						<option value="2">02</option>
+						<option value="3">03</option>
+						<option value="4">04</option>
+						<option value="5">05</option>
+						<option value="6">06</option>
+						<option value="7">07</option>
+						<option value="8">08</option>
+						<option value="9">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+						<option value="32">32</option>
+						<option value="33">33</option>
+						<option value="34">34</option>
+						<option value="35">35</option>
+						<option value="36">36</option>
+						<option value="37">37</option>
+						<option value="38">38</option>
+						<option value="39">39</option>
+						<option value="40">40</option>
+						<option value="41">41</option>
+						<option value="42">42</option>
+						<option value="43">43</option>
+						<option value="44">44</option>
+						<option value="45">45</option>
+						<option value="46">46</option>
+						<option value="47">47</option>
+						<option value="48">48</option>
+						<option value="49">49</option>
+						<option value="50">50</option>
+						<option value="51">51</option>
+						<option value="52">52</option>
+						<option value="53">53</option>
+						<option value="54">54</option>
+						<option value="55">55</option>
+						<option value="56">56</option>
+						<option value="57">57</option>
+						<option value="58">58</option>
+						<option value="59">59</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div>
+			<label for="hotel_category">Category</label>
+			<select id="hotel_category" name="hotel[category]" class="form-control">
+				<option value=""></option>
+				{% for category in categories %}
+					<option value="{{category.id}}">{{category.title}}</option>
+
+				{% endfor %} 
+
+			</select>
+		</div><input type="hidden" id="hotel__token" name="hotel[_token]" value="36dfb64adf61523aa73807b.diLz9WhvUTT_UHYSePLzmRET4l18KPeuEQUNRZua2nk.OBaix1o8Gl2QYB5UNojB8ihCjxYoW5DrY2daJ9eii0Agd7udPRYQcbIgFQ" class="form-control"/></div>
+	<button class="btn">Save</button>
+</form>
