@@ -2,6 +2,11 @@
 {% block title %}Hello AdminController!
 {% endblock %}
 {% block body %}
+<SCRIPT language="Javascript" type="text/javascript">
+	function openwin(windowURL,windowName,windowFeatures) {
+		window.open(windowURL,windowName,windowFeatures);
+	}
+</SCRIPT>
 	<div
 		class="content-wrapper">
 		<!-- Content Header (Page header) -->
@@ -51,11 +56,8 @@
 								<th>Keywords</th>
 								<th>Description</th>
 								<th>Image</th>
-								<th>Star</th>
-								
-								<th>Status</th>
-								<th>Created_at</th>
-								<th>Updated_at</th>
+								<th>Star</th>						
+								<th>Gallery</th>						
 								<th>actions</th>
 							</tr>
 						</thead>
@@ -65,15 +67,16 @@
 									<td>{{ hotel.id }}</td>
 									<td>{{ hotel.title }}</td>
 									<td>{{ hotel.category }}</td>
-									<td>{{ hotel.keywords }}</td>
+									<td>{{ hotel.keywords|raw }}</td>
 									<td>{{ hotel.description }}</td>
 									<td><img src="{{asset('uploads/images/' ~ hotel.image) }}" style="width:40px">	
 									</td>
 									<td>{{ hotel.star }}</td>
-									
-									<td>{{ hotel.status }}</td>
-									<td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-									<td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+									<td>
+										<a href="{{ path('app_image_new', {'id': hotel.id}) }}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
+                                                          <button class="btn btn-success">Gallery</button>
+                                                        </a>
+									</td>
 									<td>
 										<a href="{{ path('app_hotel_show', {'id': hotel.id}) }}">show</a>
 										<a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}">edit</a>

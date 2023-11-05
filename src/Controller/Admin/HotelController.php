@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('admin/hotel')]
+#[Route('/admin/hotel')]
 class HotelController extends AbstractController
 {
     #[Route('/', name: 'app_hotel_index', methods: ['GET'])]

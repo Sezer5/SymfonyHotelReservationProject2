@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 <div
 	class="col-md-12">
 	<!-- general form elements -->
@@ -14,7 +15,11 @@
 					<input type="text" class="form-control" id="hotel_title" name="hotel[title]" maxlength="150" value="{{hotel.title}}"/></div>
 				<div>
 					<label for="hotel_keywords">Keywords</label>
-					<input type="text" class="form-control" id="hotel_keywords" name="hotel[keywords]" maxlength="255" value="{{hotel.keywords}}"/></div>
+					<textarea id="hotel_keywords" name="hotel[keywords]">
+						{{hotel.keywords}}
+					</textarea>
+					
+					</div>
 				<div>
 					<label for="hotel_description" class="required">Description</label>
 					<input type="text" class="form-control" id="hotel_description" name="hotel[description]" required="required" maxlength="255" value="{{hotel.description}}"/></div>
@@ -395,3 +400,10 @@
 		</form>
 	</div>
 </div>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#hotel_keywords' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

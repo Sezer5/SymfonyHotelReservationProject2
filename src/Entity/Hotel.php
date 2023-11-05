@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HotelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -61,6 +63,14 @@ class Hotel
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated_at = null;
+
+    #[ORM\OneToMany(mappedBy: 'hotel_id', targetEntity: Image::class)]
+    private Collection $yes;
+
+    public function __construct()
+    {
+        $this->yes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -261,6 +271,36 @@ class Hotel
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getYes(): Collection
+    {
+        return $this->yes;
+    }
+
+    public function addYe(Image $ye): static
+    {
+        if (!$this->yes->contains($ye)) {
+            $this->yes->add($ye);
+            $ye->setHotelId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYe(Image $ye): static
+    {
+        if ($this->yes->removeElement($ye)) {
+            // set the owning side to null (unless already changed)
+            if ($ye->getHotelId() === $this) {
+                $ye->setHotelId(null);
+            }
+        }
+
+        return $this;
     } 
 
     
