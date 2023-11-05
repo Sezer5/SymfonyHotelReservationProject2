@@ -76,12 +76,9 @@ class HotelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form['image']->getData();
             if($file){
-                $fileName=$this->generateUniqueFileName() . '.' . $file->guessExtension();
+                $fileName=$this->generateUniqueFileName().'.'.$file->guessExtension();
                 try{
-                    $file->move(
-                        $this->getParameter('images_directory'),
-                        $fileName
-                    );
+                    $file->move($this->getParameter('images_directory'),$fileName);
                 }catch(FileException $e){
 
                 }
@@ -107,6 +104,7 @@ class HotelController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$hotel->getId(), $request->request->get('_token'))) {
             $entityManager->remove($hotel);
             $entityManager->flush();
+            
         }
 
         return $this->redirectToRoute('app_hotel_index', [], Response::HTTP_SEE_OTHER);

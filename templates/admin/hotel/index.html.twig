@@ -52,13 +52,7 @@
 								<th>Description</th>
 								<th>Image</th>
 								<th>Star</th>
-								<th>Address</th>
-								<th>Phone</th>
-								<th>Fax</th>
-								<th>Email</th>
-								<th>City</th>
-								<th>Country</th>
-								<th>Location</th>
+								
 								<th>Status</th>
 								<th>Created_at</th>
 								<th>Updated_at</th>
@@ -76,19 +70,14 @@
 									<td><img src="{{asset('uploads/images/' ~ hotel.image) }}" style="width:40px">	
 									</td>
 									<td>{{ hotel.star }}</td>
-									<td>{{ hotel.address }}</td>
-									<td>{{ hotel.phone }}</td>
-									<td>{{ hotel.fax }}</td>
-									<td>{{ hotel.email }}</td>
-									<td>{{ hotel.city }}</td>
-									<td>{{ hotel.country }}</td>
-									<td>{{ hotel.location }}</td>
+									
 									<td>{{ hotel.status }}</td>
 									<td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 									<td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 									<td>
 										<a href="{{ path('app_hotel_show', {'id': hotel.id}) }}">show</a>
 										<a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}">edit</a>
+										<a href="{{ path('app_hotel_delete', {'id': hotel.id}) }}">delete</a>
 									</td>
 								</tr>
 							{% else %}

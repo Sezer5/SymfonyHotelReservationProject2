@@ -13,7 +13,7 @@ class Hotel
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $title = null;
 
@@ -262,4 +262,6 @@ class Hotel
     {
         return $this->title;
     } 
+
+    
 }
